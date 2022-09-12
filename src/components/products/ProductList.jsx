@@ -6,9 +6,8 @@ const ProductList = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const incrementHandler = (id, count) => {
-    console.log(id, count);
-    dispatch(increment(id, count));
+  const incrementHandler = (id, count, quantity) => {
+    dispatch(increment(id, count, quantity));
   };
 
   return (
@@ -25,7 +24,9 @@ const ProductList = () => {
 
             <div className="text-lg font-semibold">
               <button
-                onClick={() => incrementHandler(product.id, product.count)}
+                onClick={() =>
+                  incrementHandler(product.id, product.count, product.quantity)
+                }
                 className="focus:outline-none bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-2 rounded-full inline-flex items-center"
               >
                 <svg

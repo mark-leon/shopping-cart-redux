@@ -6,11 +6,11 @@ const CartItem = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const incrementHandler = (id, value) => {
-    dispatch(increment(id, value));
+  const incrementHandler = (id, value, quantity) => {
+    dispatch(increment(id, value, quantity));
   };
-  const decrementHandler = (id, value) => {
-    dispatch(decrement(id, value));
+  const decrementHandler = (id, value, quantity) => {
+    dispatch(decrement(id, value, quantity));
   };
 
   const totalCount = () => {
@@ -28,7 +28,13 @@ const CartItem = () => {
             <div className="text-lg py-2">
               <div className="flex flex-row space-x-2 w-full items-center rounded-lg">
                 <button
-                  onClick={() => decrementHandler(product.id, product.count)}
+                  onClick={() =>
+                    decrementHandler(
+                      product.id,
+                      product.count,
+                      product.quantity
+                    )
+                  }
                   className="focus:outline-none bg-purple-700 hover:bg-purple-800 text-white font-bold py-1 px-1 rounded-full inline-flex items-center"
                 >
                   <svg
@@ -48,7 +54,13 @@ const CartItem = () => {
                 </button>
                 <p>{product.count}</p>
                 <button
-                  onClick={() => incrementHandler(product.id, product.count)}
+                  onClick={() =>
+                    incrementHandler(
+                      product.id,
+                      product.count,
+                      product.quantity
+                    )
+                  }
                   className="focus:outline-none bg-purple-700 hover:bg-purple-800 text-white font-bold py-1 px-1 rounded-full inline-flex items-center"
                 >
                   <svg

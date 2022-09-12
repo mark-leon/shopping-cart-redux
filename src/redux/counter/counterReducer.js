@@ -5,7 +5,7 @@ const initialState = [
     id: 1,
     count: 0,
     price: 35500,
-    quantity: 20,
+    quantity: 2,
     name: "Asus Vivobook X515MA",
   },
   {
@@ -28,7 +28,7 @@ const counterReducer = (state = initialState, action) => {
   switch (action.type) {
     case INCREMENT:
       return state.map((counter) =>
-        counter.id === action.id
+        counter.id === action.id && action.quantity !== 0
           ? {
               ...counter,
               count: counter.count + 1,
@@ -39,7 +39,7 @@ const counterReducer = (state = initialState, action) => {
 
     case DECREMENT:
       return state.map((counter) =>
-        counter.id === action.id
+        counter.id === action.id && action.payload !== 0
           ? {
               ...counter,
               count: counter.count - 1,
@@ -47,18 +47,6 @@ const counterReducer = (state = initialState, action) => {
             }
           : counter
       );
-    // case INCREMENET:
-    //   return {
-    //     ...state,
-    //     value: state.value + 1,
-    //   };
-
-    // case DECREMENT:
-    //   return {
-    //     ...state,
-    //     value: state.value - 1,
-    //   };
-
     default:
       return state;
   }
